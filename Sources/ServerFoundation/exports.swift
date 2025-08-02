@@ -27,3 +27,6 @@
 @_exported import Translating
 @_exported import URLRouting
 @_exported import URLRoutingTranslating
+@_exported import URLFormCoding
+@_exported import URLFormCodingURLRouting
+@_exported import URLMultipartFormCodingURLRouting

@@ -30,6 +30,9 @@ extension Target.Dependency {
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var passwordValidation: Self { .product(name: "PasswordValidation", package: "swift-password-validation") }
     static var urlRoutingTranslating: Self { .product(name: "URLRoutingTranslating", package: "swift-url-routing-translating") }
+    static var urlFormCoding: Self { .product(name: "URLFormCoding", package: "swift-url-form-coding") }
+    static var urlFormCodingURLRouting: Self { .product(name: "URLFormCodingURLRouting", package: "swift-url-form-coding-url-routing") }
+    static var urlMultipartFormCodingURLRouting: Self { .product(name: "URLMultipartFormCodingURLRouting", package: "swift-url-multipart-form-coding-url-routing") }
     static var crypto: Self { .product(name: "Crypto", package: "swift-crypto") }
     static var dateParsing: Self { .product(name: "DateParsing", package: "swift-date-parsing") }
     static var unixEpochParsing: Self { .product(name: "UnixEpochParsing", package: "swift-date-parsing") }
@@ -101,7 +104,10 @@ let package = Package(
                 .dateParsing,
                 .unixEpochParsing,
                 .jwt,
-                .crypto
+                .crypto,
+                .urlFormCoding,
+                .urlFormCodingURLRouting,
+                .urlMultipartFormCodingURLRouting
             ]
         ),
         .testTarget(
