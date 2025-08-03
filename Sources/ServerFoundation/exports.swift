@@ -30,3 +30,7 @@
 @_exported import URLFormCoding
 @_exported import URLFormCodingURLRouting
 @_exported import URLMultipartFormCodingURLRouting
+
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
