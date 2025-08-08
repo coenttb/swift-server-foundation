@@ -1,6 +1,7 @@
 import Dependencies
 import NIOCore
 import NIOEmbedded
+import NIOPosix
 
 public enum MainEventLoopGroup {}
 
