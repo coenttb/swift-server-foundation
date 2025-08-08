@@ -20,6 +20,7 @@
 @_exported import IssueReporting
 @_exported import JWT
 @_exported import Logging
+@_exported import LoggingExtras
 @_exported import PasswordValidation
 @_exported @preconcurrency import PostgresKit
 @_exported import RateLimiter
@@ -30,6 +31,7 @@
 @_exported import URLFormCoding
 @_exported import URLFormCodingURLRouting
 @_exported import URLMultipartFormCodingURLRouting
+@_exported import URLRequestHandler
 
 #if canImport(FoundationNetworking)
 import FoundationNetworking
