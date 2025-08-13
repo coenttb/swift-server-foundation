@@ -16,7 +16,7 @@ This foundation re-exports the following specialized packages, organized by doma
 ### **Authentication & Security**
 
 - **[Crypto](https://github.com/apple/swift-crypto)** - Apple's Swift Crypto framework for cryptographic operations, hashing, and secure key management
-- **[RateLimiter](https://github.com/coenttb/swift-ratelimiter)** - Flexible rate limiting implementation to protect APIs from abuse and ensure fair usage
+- **[Throttling](https://github.com/coenttb/swift-throttling)** - Flexible rate limiting and throttling implementation to protect APIs from abuse and ensure fair usage
 
 ### **Database & Persistence**
 
@@ -60,7 +60,7 @@ Instead of importing multiple individual packages:
 import AsyncHTTPClient
 import PostgresKit
 import JWT
-import RateLimiter
+import Throttling
 import Logging
 import EnvironmentVariables
 // ... and many more

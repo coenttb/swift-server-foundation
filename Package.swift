@@ -26,7 +26,7 @@ extension Target.Dependency {
     static var foundationExtensions: Self { .product(name: "FoundationExtensions", package: "swift-foundation-extensions") }
     static var translating: Self { .product(name: "Translating", package: "swift-translating") }
     static var logging: Self { .product(name: "Logging", package: "swift-log") }
-    static var rateLimiter: Self { .product(name: "RateLimiter", package: "swift-ratelimiter") }
+    static var throttling: Self { .product(name: "Throttling", package: "swift-throttling") }
     static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var passwordValidation: Self { .product(name: "PasswordValidation", package: "swift-password-validation") }
@@ -63,7 +63,7 @@ let package = Package(
         .package(url: "https://github.com/coenttb/swift-foundation-extensions", from: "0.1.0"),
         .package(url: "https://github.com/coenttb/swift-jwt", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-password-validation", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-ratelimiter", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-throttling", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-translating", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-url-form-coding", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-url-routing-translating", from: "0.0.1"),
@@ -91,7 +91,7 @@ let package = Package(
                 .translating,
                 .logging,
                 .loggingExtras,
-                .rateLimiter,
+                .throttling,
                 .issueReporting,
                 .urlRouting,
                 .urlRequestHandler,

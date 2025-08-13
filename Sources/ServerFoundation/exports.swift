@@ -22,7 +22,7 @@
 @_exported import Logging
 @_exported import LoggingExtras
 @_exported import PasswordValidation
-@_exported import RateLimiter
+@_exported import Throttling
 @_exported import ServerFoundationEnvVars
 @_exported import Translating
 @_exported import URLRouting
