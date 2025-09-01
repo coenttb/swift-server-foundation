@@ -29,6 +29,7 @@
 @_exported import URLRoutingTranslating
 @_exported import URLFormCoding
 @_exported import URLRequestHandler
+@_exported import Tagged
 
 #if canImport(FoundationNetworking)
 import FoundationNetworking

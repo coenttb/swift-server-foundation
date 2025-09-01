@@ -3,13 +3,13 @@
 import PackageDescription
 
 extension String {
-    static let coenttbServer: Self = "ServerFoundation"
-    static let coenttbServerEnvVars: Self = "ServerFoundationEnvVars"
+    static let serverFoundation: Self = "ServerFoundation"
+    static let serverEnvVars: Self = "ServerFoundationEnvVars"
 }
 
 extension Target.Dependency {
-    static var coenttbServer: Self { .target(name: .coenttbServer) }
-    static var coenttbServerEnvVars: Self { .target(name: .coenttbServerEnvVars) }
+    static var serverFoundation: Self { .target(name: .serverFoundation) }
+    static var serverEnvVars: Self { .target(name: .serverEnvVars) }
 }
 
 extension Target.Dependency {
@@ -33,6 +33,7 @@ extension Target.Dependency {
     static var urlRoutingTranslating: Self { .product(name: "URLRoutingTranslating", package: "swift-url-routing-translating") }
     static var urlFormCoding: Self { .product(name: "URLFormCoding", package: "swift-url-form-coding") }
     static var crypto: Self { .product(name: "Crypto", package: "swift-crypto") }
+    static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
     static var dateParsing: Self { .product(name: "DateParsing", package: "swift-date-parsing") }
     static var unixEpochParsing: Self { .product(name: "UnixEpochParsing", package: "swift-date-parsing") }
     static var jwt: Self { .product(name: "JWT", package: "swift-jwt") }
@@ -46,13 +47,13 @@ let package = Package(
     ],
     products: [
         .library(
-            name: .coenttbServer,
+            name: .serverFoundation,
             targets: [
-                .coenttbServer,
-                .coenttbServerEnvVars
+                .serverFoundation,
+                .serverEnvVars
             ]
         ),
-        .library(name: .coenttbServerEnvVars, targets: [.coenttbServerEnvVars])
+        .library(name: .serverEnvVars, targets: [.serverEnvVars])
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/swift-builders", from: "0.0.1"),
@@ -68,6 +69,7 @@ let package = Package(
         .package(url: "https://github.com/coenttb/swift-url-form-coding", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-url-routing-translating", from: "0.0.1"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "1.5.6"),
+        .package(url: "https://github.com/pointfreeco/swift-tagged", from: "0.10.0"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.4.3"),
         .package(url: "https://github.com/pointfreeco/swift-url-routing", from: "0.6.2"),
@@ -79,10 +81,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: .coenttbServer,
+            name: .serverFoundation,
             dependencies: [
                 .builders,
-                .coenttbServerEnvVars,
+                .serverEnvVars,
                 .asyncHttpClient,
                 .casePaths,
                 .dependencies,
@@ -103,27 +105,28 @@ let package = Package(
                 .unixEpochParsing,
                 .jwt,
                 .crypto,
-                .urlFormCoding
+                .urlFormCoding,
+                .tagged
             ]
         ),
         .testTarget(
-            name: .coenttbServer.tests,
+            name: .serverFoundation.tests,
             dependencies: [
-                .coenttbServer,
+                .serverFoundation,
                 .dependenciesTestSupport
             ]
         ),
         .target(
-            name: .coenttbServerEnvVars,
+            name: .serverEnvVars,
             dependencies: [
                 .environmentVariables,
                 .logging
             ]
         ),
         .testTarget(
-            name: .coenttbServerEnvVars.tests,
+            name: .serverEnvVars.tests,
             dependencies: [
-                .coenttbServerEnvVars,
+                .serverEnvVars,
                 .dependenciesTestSupport
             ]
         )
