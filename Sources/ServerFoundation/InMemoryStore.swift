@@ -72,7 +72,7 @@ extension InMemoryStore {
         guard let entry = cache.getValue(forKey: key) else { return nil }
 
         if let expiresAt = entry.expiresAt, expiresAt < Date() {
-            cache.removeValue(forKey: key)
+            _ = cache.removeValue(forKey: key)
             return nil
         }
 
@@ -83,7 +83,7 @@ extension InMemoryStore {
         guard let entry = cache.getValue(forKey: key) else { return nil }
 
         if let expiresAt = entry.expiresAt, expiresAt < Date() {
-            cache.removeValue(forKey: key)
+            _ = cache.removeValue(forKey: key)
             return nil
         }
 
@@ -91,7 +91,7 @@ extension InMemoryStore {
     }
 
     public func remove(_ key: String) {
-        cache.removeValue(forKey: key)
+        _ = cache.removeValue(forKey: key)
     }
 
     public func removeExpiredEntries() {
