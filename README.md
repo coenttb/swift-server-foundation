@@ -51,7 +51,7 @@ let jwt = try JWT(
 )
 ```
 
-## Included Libraries
+## Usage
 
 ### Type Safety & Domain Modeling
 
@@ -110,7 +110,7 @@ let apiKey = try EnvVars.API_KEY.require()
 ## Related Packages
 
 - [boiler](https://www.github.com/coenttb/boiler) - A minimal Swift web framework for building type-safe servers
-- [swift-web-foundation](https://www.github.com/coenttb/swift-web-foundation) - Web development foundation library with HTML, CSS, and form handling
+- [swift-web-foundation](https://www.github.com/coenttb/swift-web-foundation) - A Swift package with tools to simplify web development.
 - [coenttb-com-server](https://www.github.com/coenttb/coenttb-com-server) - The backend server for coenttb.com, written entirely in Swift and powered by this foundation
 
 ## License
