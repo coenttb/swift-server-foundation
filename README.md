@@ -1,126 +1,122 @@
-# swift-server-foundation: Server Development Foundation for Swift
+# swift-server-foundation
 
-`swift-server-foundation` is a comprehensive server-side Swift library that consolidates essential packages for building robust, scalable server applications. Rather than managing multiple dependencies, this foundation provides unified access to authentication, database connectivity, rate limiting, logging, routing, and server infrastructure tools.
+[![CI](https://github.com/coenttb/swift-server-foundation/workflows/CI/badge.svg)](https://github.com/coenttb/swift-server-foundation/actions/workflows/ci.yml)
+![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
-## Included Libraries
+A foundation library for server-side Swift development that consolidates essential packages for building server applications.
 
-This foundation re-exports the following specialized packages, organized by domain:
+## Overview
 
-### **Type Safety & Domain Modeling**
+swift-server-foundation provides a unified interface to commonly-used server development packages. Instead of managing multiple dependencies individually, this foundation package re-exports and integrates type safety, authentication, infrastructure, and utility libraries into a single import.
 
-- **[EmailAddress](https://github.com/coenttb/swift-emailaddress-type)** - Domain-accurate and type-safe email address handling that adheres to web standards
-- **[Domain](https://github.com/coenttb/swift-domain-type)** - Type-safe domain model consistent with web standards for reliable domain handling
-- **[JWT](https://github.com/coenttb/swift-jwt)** - Standards-compliant JSON Web Token creation, signing, and verification using Apple's Crypto framework
-- **[PasswordValidation](https://github.com/coenttb/swift-password-validation)** - Robust password validation with customizable security policies
+## Features
 
-### **Authentication & Security**
+- Type-safe domain models for email addresses, domains, and JWT
+- Password validation with customizable security policies
+- Cryptographic operations via Apple's Crypto framework
+- Rate limiting and request throttling
+- HTTP client with async/await support
+- Structured logging with Apple's unified logging API
+- Environment variable handling with type safety
+- URL routing with internationalization support
+- Declarative content builders
 
-- **[Crypto](https://github.com/apple/swift-crypto)** - Apple's Swift Crypto framework for cryptographic operations, hashing, and secure key management
-- **[Throttling](https://github.com/coenttb/swift-throttling)** - Flexible rate limiting and throttling implementation to protect APIs from abuse and ensure fair usage
+## Installation
 
-### **Database & Persistence**
-
-- **[PostgresKit](https://github.com/vapor/postgres-kit)** - PostgreSQL database driver with async/await support for reliable data persistence
-- **Database Configuration** - Built-in utilities for managing database connections and configurations
-
-### **Server Infrastructure**
-
-- **[AsyncHTTPClient](https://github.com/swift-server/async-http-client)** - Non-blocking HTTP client built on SwiftNIO for making external API calls
-- **[Logging](https://github.com/apple/swift-log)** - Apple's unified logging API for structured, configurable application logging
-- **Event Loop Management** - Connection pooling and event loop group utilities for optimal performance
-
-### **Environment & Configuration**
-
-- **[EnvironmentVariables](https://github.com/coenttb/swift-environment-variables)** - Type-safe environment variable handling with validation and defaults
-- **Environment Variables Test Support** - Testing utilities for environment-dependent code
-
-### **Date & Time Handling**
-
-- **[DateParsing](https://github.com/coenttb/swift-date-parsing)** - Comprehensive date parsing for RFC 2822, RFC 5322, and Unix epoch timestamps with robust error handling
-- **[FoundationExtensions](https://github.com/coenttb/swift-foundation-extensions)** - Powerful extensions for date manipulation, validation, and formatting with intuitive operations like `date + 1.day`
-
-### **Routing & Translation**
-
-- **[URLRouting](https://github.com/pointfreeco/swift-url-routing)** - Point-Free's powerful URL routing library for type-safe navigation
-- **[URLRoutingTranslating](https://github.com/coenttb/swift-url-routing-translating)** - Internationalization support for routing with multi-language URL patterns
-- **[Translating](https://github.com/coenttb/swift-translating)** - Comprehensive translation and localization framework
-
-### **Utilities & Infrastructure**
-
-- **[Builders](https://github.com/coenttb/swift-builders)** - Result builders for creating collections and content with declarative, SwiftUI-like syntax
-- **[Dependencies](https://github.com/pointfreeco/swift-dependencies)** - SwiftUI Environment-inspired dependency management for controllable and testable applications
-- **[CasePaths](https://github.com/pointfreeco/swift-case-paths)** - Key path-like functionality for enum cases
-- **[IssueReporting](https://github.com/pointfreeco/xctest-dynamic-overlay)** - Runtime issue reporting and debugging utilities
-
-## Usage
-
-Instead of importing multiple individual packages:
+Add swift-server-foundation to your Package.swift dependencies:
 
 ```swift
-import AsyncHTTPClient
-import PostgresKit
-import JWT
-import Throttling
-import Logging
-import EnvironmentVariables
-// ... and many more
+dependencies: [
+    .package(url: "https://github.com/coenttb/swift-server-foundation.git", from: "0.0.1")
+]
 ```
 
-Simply import the foundation:
+## Quick Start
+
+Import the foundation to access all included packages:
 
 ```swift
 import ServerFoundation
 
-// All server functionality is now available:
+// Logging
 let logger = Logger(label: "com.example.app")
-let jwt = try JWT.signed(/* ... */)
-let client = HTTPClient(eventLoopGroupProvider: .shared)
-let rateLimiter = RateLimiter(rate: 100, per: .minute)
-let dbConfig = try DatabaseConfiguration.live
+
+// HTTP Client
+let client = HTTPClient(eventLoopGroupProvider: .shared(eventLoopGroup))
+
+// JWT
+let jwt = try JWT(
+    payload: ["user_id": "12345"],
+    signedBy: key
+)
 ```
 
-## Installation
+## Included Libraries
 
-To use **swift-server-foundation** in your project, add it to your `Package.swift` dependencies:
+### Type Safety & Domain Modeling
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/coenttb/swift-server-foundation.git", exact: "0.0.1")
-]
-```
+- [EmailAddress](https://github.com/coenttb/swift-emailaddress-type) - Type-safe email address handling
+- [Domain](https://github.com/coenttb/swift-domain-type) - Type-safe domain models
+- [JWT](https://github.com/coenttb/swift-jwt) - JSON Web Token implementation
+- [PasswordValidation](https://github.com/coenttb/swift-password-validation) - Password validation policies
 
-## Environment Variables Support
+### Security
 
-The package includes `ServerFoundationEnvVars` for environment-specific configuration:
+- [Crypto](https://github.com/apple/swift-crypto) - Cryptographic operations and key management
+- [Throttling](https://github.com/coenttb/swift-throttling) - Rate limiting for API protection
+
+### Server Infrastructure
+
+- [AsyncHTTPClient](https://github.com/swift-server/async-http-client) - Non-blocking HTTP client
+- [Logging](https://github.com/apple/swift-log) - Unified logging API
+
+### Configuration
+
+- [EnvironmentVariables](https://github.com/coenttb/swift-environment-variables) - Type-safe environment variable handling
+- ServerFoundationEnvVars - Environment-specific configuration
+
+### Date & Time
+
+- [DateParsing](https://github.com/coenttb/swift-date-parsing) - RFC 2822, RFC 5322, and Unix epoch parsing
+- [FoundationExtensions](https://github.com/coenttb/swift-foundation-extensions) - Date manipulation and validation
+
+### Routing & Localization
+
+- [URLRouting](https://github.com/pointfreeco/swift-url-routing) - Type-safe URL routing
+- [URLRoutingTranslating](https://github.com/coenttb/swift-url-routing-translating) - Multi-language URL patterns
+- [Translating](https://github.com/coenttb/swift-translating) - Translation and localization framework
+
+### Utilities
+
+- [Builders](https://github.com/coenttb/swift-builders) - Result builders for declarative syntax
+- [Dependencies](https://github.com/pointfreeco/swift-dependencies) - Dependency management
+- [CasePaths](https://github.com/pointfreeco/swift-case-paths) - Key path-like functionality for enums
+- [IssueReporting](https://github.com/pointfreeco/xctest-dynamic-overlay) - Runtime issue reporting
+
+## Environment Variables
+
+The ServerFoundationEnvVars module provides type-safe access to environment configuration:
 
 ```swift
 import ServerFoundationEnvVars
 
-// Access environment variables with type safety
+// Access with defaults
 let port = EnvVars.PORT.value ?? 8080
-let databaseUrl = EnvVars.DATABASE_URL.require()
+
+// Require value (throws if missing)
+let apiKey = try EnvVars.API_KEY.require()
 ```
 
-## Related projects
+## Related Packages
 
-### Boiler & coenttb
-
-* [boiler](https://www.github.com/coenttb/boiler): A minimal Swift web framework for building type-safe servers
-* [swift-web-foundation](https://www.github.com/coenttb/swift-web-foundation): Web development foundation library with HTML, CSS, and form handling
-* [coenttb-com-server](https://www.github.com/coenttb/coenttb-com-server): The backend server for coenttb.com, written entirely in Swift and powered by this foundation
-
-## Feedback is Much Appreciated!
-  
-If you're working on your own Swift server project, feel free to learn, fork, and contribute.
-
-Got thoughts? Found something you love? Something you hate? Let me know! Your feedback helps make this project better for everyone. Open an issue or start a discussion—I'm all ears.
-
-> [Subscribe to my newsletter](http://coenttb.com/en/newsletter/subscribe)
->
-> [Follow me on X](http://x.com/coenttb)
-> 
-> [Link on Linkedin](https://www.linkedin.com/in/tenthijeboonkkamp)
+- [boiler](https://www.github.com/coenttb/boiler) - A minimal Swift web framework for building type-safe servers
+- [swift-web-foundation](https://www.github.com/coenttb/swift-web-foundation) - Web development foundation library with HTML, CSS, and form handling
+- [coenttb-com-server](https://www.github.com/coenttb/coenttb-com-server) - The backend server for coenttb.com, written entirely in Swift and powered by this foundation
 
 ## License
 
-This project is licensed under the **Apache 2.0 License**. See the [LICENSE](LICENSE).
+This project is licensed under the Apache 2.0 License. See [LICENSE](LICENSE) for details.
+
+## Contributing
+
+Contributions are welcome. Please open an issue or submit a pull request on [GitHub](https://github.com/coenttb/swift-server-foundation).
