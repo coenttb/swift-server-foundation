@@ -1,5 +1,5 @@
 //
-//  URL?.canonical.swift
+//  URLOptional.canonical.swift
 //  coenttb-web
 //
 //  Created by Coen ten Thije Boonkkamp on 22/08/2024.
