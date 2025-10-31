@@ -9,15 +9,48 @@ import EnvironmentVariables
 import Foundation
 import Logging
 
+public enum EnvVarsError: Error, CustomStringConvertible {
+    case missingVariable(String)
+    case invalidFormat(variable: String, expectedType: String, value: String)
+
+    public var description: String {
+        switch self {
+        case .missingVariable(let name):
+            return "Environment variable '\(name)' is not set"
+        case .invalidFormat(let variable, let expectedType, let value):
+            return "Environment variable '\(variable)' has invalid format. Expected \(expectedType), got: '\(value)'"
+        }
+    }
+}
+
 extension EnvVars {
-    public var baseUrl: URL {
-        get { URL(string: self["BASE_URL"]!)! }
-        set { self["BASE_URL"] = newValue.absoluteString }
+    // Throwing getters for required environment variables
+    public func baseUrl() throws -> URL {
+        guard let urlString = self["BASE_URL"] else {
+            throw EnvVarsError.missingVariable("BASE_URL")
+        }
+        guard let url = URL(string: urlString) else {
+            throw EnvVarsError.invalidFormat(variable: "BASE_URL", expectedType: "URL", value: urlString)
+        }
+        return url
     }
 
-    public var port: Int {
-        get { Int(self["PORT"]!)! }
-        set { self["PORT"] = String(newValue) }
+    public mutating func setBaseUrl(_ url: URL) {
+        self["BASE_URL"] = url.absoluteString
+    }
+
+    public func port() throws -> Int {
+        guard let portString = self["PORT"] else {
+            throw EnvVarsError.missingVariable("PORT")
+        }
+        guard let port = Int(portString) else {
+            throw EnvVarsError.invalidFormat(variable: "PORT", expectedType: "Int", value: portString)
+        }
+        return port
+    }
+
+    public mutating func setPort(_ port: Int) {
+        self["PORT"] = String(port)
     }
 }
 

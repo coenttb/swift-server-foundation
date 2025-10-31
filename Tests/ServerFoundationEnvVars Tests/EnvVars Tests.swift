@@ -49,8 +49,8 @@ struct EnvVarsTests {
         func baseConfigurationWithEnvExample() throws {
             @Dependency(\.envVars) var envVars
 
-            #expect(envVars.baseUrl.absoluteString == "http://localhost:8080")
-            #expect(envVars.port == 8080)
+            #expect(try envVars.baseUrl().absoluteString == "http://localhost:8080")
+            #expect(try envVars.port() == 8080)
         }
 
         @Test("Server configuration properties work with .env.example")
@@ -91,8 +91,8 @@ struct EnvVarsTests {
             @Dependency(\.envVars) var envVars
 
             //  coenttb-server
-            #expect(envVars.baseUrl.absoluteString == "http://localhost:8080")
-            #expect(envVars.port == 8080)
+            #expect(try envVars.baseUrl().absoluteString == "http://localhost:8080")
+            #expect(try envVars.port() == 8080)
             #expect(envVars.allowedInsecureHosts == ["127.0.0.1", "0.0.0.0", "localhost"])
             #expect(envVars.canonicalHost == "localhost:8080")
             #expect(envVars.emergencyMode == false)
@@ -139,10 +139,10 @@ struct EnvVarsTests {
             var envVars = try EnvVars(dictionary: ["BASE_URL": "https://example.com"], requiredKeys: [])
 
             //  coenttb-server
-            #expect(envVars.baseUrl.absoluteString == "https://example.com")
+            #expect(try envVars.baseUrl().absoluteString == "https://example.com")
 
             //  EnvVars Tests.swift
-            envVars.baseUrl = URL(string: "https://newexample.com")!
+            envVars.setBaseUrl(URL(string: "https://newexample.com")!)
             #expect(envVars["BASE_URL"] == "https://newexample.com")
         }
 
@@ -151,10 +151,10 @@ struct EnvVarsTests {
             var envVars = try EnvVars(dictionary: ["PORT": "8080"], requiredKeys: [])
 
             //  coenttb-server
-            #expect(envVars.port == 8080)
+            #expect(try envVars.port() == 8080)
 
             //  EnvVars Tests.swift
-            envVars.port = 3000
+            envVars.setPort(3000)
             #expect(envVars["PORT"] == "3000")
         }
     }
@@ -357,12 +357,12 @@ struct EnvVarsTests {
         }
 
         @Test("LocalWebDevelopment configuration works with computed properties")
-        func localWebDevelopmentComputedProperties() {
+        func localWebDevelopmentComputedProperties() throws {
             let envVars = EnvVars.localWebDevelopment
 
             //  EnvVars Tests.swift
-            #expect(envVars.baseUrl.absoluteString == "http://localhost:8080")
-            #expect(envVars.port == 8080)
+            #expect(try envVars.baseUrl().absoluteString == "http://localhost:8080")
+            #expect(try envVars.port() == 8080)
         }
     }
 

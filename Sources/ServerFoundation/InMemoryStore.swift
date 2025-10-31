@@ -25,12 +25,7 @@ public actor InMemoryStore {
     }
 
     deinit {
-        Task { [weak self] in
-            await self?.invalidateTimer()
-        }
-    }
-
-    private func invalidateTimer() {
+        // Synchronously invalidate the timer to ensure cleanup happens immediately
         cleanupTimer?.invalidate()
     }
 
