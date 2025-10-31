@@ -5,7 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp on 23/07/2025.
 //
 
-@testable import Coenttb_Server_EnvVars
+@testable import ServerFoundationEnvVars
 import DependenciesTestSupport
 import EnvironmentVariables
 import Foundation

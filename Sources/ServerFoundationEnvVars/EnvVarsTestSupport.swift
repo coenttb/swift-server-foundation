@@ -38,4 +38,11 @@ extension Set<String> {
         "BASE_URL",
         "PORT"
     ]
+
+    public static let requiredKeys: Set<String> = [
+        "APP_SECRET",
+        "APP_ENV",
+        "BASE_URL",
+        "PORT"
+    ]
 }

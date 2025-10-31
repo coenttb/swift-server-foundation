@@ -5,17 +5,17 @@
 //  Created by Coen ten Thije Boonkkamp on 23/07/2025.
 //
 
-@testable import Coenttb_Server_Utils
+@testable import ServerFoundation
 import Foundation
 import Logging
 import Testing
 
-@Suite("CoenttbLogHandler Tests")
-struct CoenttbLogHandlerTests {
+@Suite("LogHandler Tests")
+struct LogHandlerTests {
 
     @Test("LogHandler formats levels correctly")
     func logHandlerFormatsLevelsCorrectly() {
-        let handler = CoenttbLogHandler(label: "test")
+        let handler = LogHandler(label: "test")
 
         let levels: [Logger.Level] = [.trace, .debug, .info, .notice, .warning, .error, .critical]
         let expectedFormats = ["TRACE", "DEBUG", "INFO ", "NOTCE", "WARN ", "ERROR", "CRIT "]
@@ -27,7 +27,7 @@ struct CoenttbLogHandlerTests {
 
     @Test("LogHandler initializes with correct defaults")
     func logHandlerInitializesWithCorrectDefaults() {
-        let handler = CoenttbLogHandler(label: "test-label")
+        let handler = LogHandler(label: "test-label")
 
         #expect(handler.logLevel == .info)
         #expect(handler.metadataProvider == nil)
@@ -37,7 +37,7 @@ struct CoenttbLogHandlerTests {
     @Test("LogHandler initializes with custom values")
     func logHandlerInitializesWithCustomValues() {
         let metadataProvider = Logger.MetadataProvider { ["custom": "value"] }
-        let handler = CoenttbLogHandler(
+        let handler = LogHandler(
             label: "custom-label",
             logLevel: .debug,
             metadataProvider: metadataProvider
@@ -49,7 +49,7 @@ struct CoenttbLogHandlerTests {
 
     @Test("LogHandler manages metadata correctly")
     func logHandlerManagesMetadataCorrectly() {
-        var handler = CoenttbLogHandler(label: "test")
+        var handler = LogHandler(label: "test")
 
         #expect(handler.metadata.isEmpty)
 

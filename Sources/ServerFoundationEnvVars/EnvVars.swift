@@ -49,8 +49,27 @@ extension EnvVars {
 }
 
 extension EnvVars {
+    public var localSslServerCrt: String? {
+        get { self["LOCAL-SSL-SERVER-CRT"] }
+        set { self["LOCAL-SSL-SERVER-CRT"] = newValue }
+    }
+
+    public var localSslServerKey: String? {
+        get { self["LOCAL-SSL-SERVER-KEY"] }
+        set { self["LOCAL-SSL-SERVER-KEY"] = newValue }
+    }
+}
+
+extension EnvVars {
     public var appleDeveloperMerchantIdDomainAssociation: String? {
         get { self["APPLE-DEVELOPER-MERCHANTID-DOMAIN-ASSOCIATION"] }
         set { self["APPLE-DEVELOPER-MERCHANTID-DOMAIN-ASSOCIATION"] = newValue }
+    }
+}
+
+extension EnvVars {
+    public var taxIdentificationNumber: String? {
+        get { self["TAXIDENTIFICATIONNUMBER"] }
+        set { self["TAXIDENTIFICATIONNUMBER"] = newValue }
     }
 }
