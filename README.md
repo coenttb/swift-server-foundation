@@ -109,9 +109,32 @@ let apiKey = try EnvVars.API_KEY.require()
 
 ## Related Packages
 
-- [boiler](https://www.github.com/coenttb/boiler) - A minimal Swift web framework for building type-safe servers
-- [swift-web-foundation](https://www.github.com/coenttb/swift-web-foundation) - A Swift package with tools to simplify web development.
-- [coenttb-com-server](https://www.github.com/coenttb/coenttb-com-server) - The backend server for coenttb.com, written entirely in Swift and powered by this foundation
+### Dependencies
+
+- [swift-environment-variables](https://github.com/coenttb/swift-environment-variables): A Swift package for type-safe environment variable management.
+- [swift-jwt](https://github.com/coenttb/swift-jwt): A Swift package for creating, signing, and verifying JSON Web Tokens.
+- [swift-logging-extras](https://github.com/coenttb/swift-logging-extras): A Swift package for integrating swift-logging with swift-dependencies.
+- [swift-password-validation](https://github.com/coenttb/swift-password-validation): A Swift package for type-safe password validation.
+- [swift-throttling](https://github.com/coenttb/swift-throttling): A Swift package for request throttling.
+- [swift-types-foundation](https://github.com/coenttb/swift-types-foundation): A Swift package bundling essential type-safe packages for domain modeling.
+- [swift-urlrequest-handler](https://github.com/coenttb/swift-urlrequest-handler): A Swift package for URLRequest handling with structured error handling.
+
+### Used By
+
+- [coenttb-com-server](https://github.com/coenttb/coenttb-com-server): Production server for coenttb.com built with Boiler.
+- [coenttb-newsletter](https://github.com/coenttb/coenttb-newsletter): A Swift package for newsletter subscription and email management.
+- [coenttb-server](https://github.com/coenttb/coenttb-server): A Swift package for building fast, modern, and safe servers.
+- [swift-github-live](https://github.com/coenttb/swift-github-live): A Swift package with live implementations for the GitHub API.
+- [swift-identities-mailgun](https://github.com/coenttb/swift-identities-mailgun): A Swift package integrating Mailgun with swift-identities.
+- [swift-server-foundation-vapor](https://github.com/coenttb/swift-server-foundation-vapor): A Swift package integrating swift-server-foundation with Vapor.
+- [swift-stripe](https://github.com/coenttb/swift-stripe): The Swift library for the Stripe API.
+- [swift-stripe-live](https://github.com/coenttb/swift-stripe-live): A Swift package with live implementations for the Stripe API.
+
+### Third-Party Dependencies
+
+- [pointfreeco/swift-dependencies](https://github.com/pointfreeco/swift-dependencies): A dependency management library for controlling dependencies in Swift.
+- [apple/swift-crypto](https://github.com/apple/swift-crypto): Open-source implementation of a substantial portion of the API of Apple CryptoKit.
+- [apple/swift-log](https://github.com/apple/swift-log): A Logging API for Swift.
 
 ## License
 
