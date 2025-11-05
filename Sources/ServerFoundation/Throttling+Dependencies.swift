@@ -9,34 +9,34 @@ import Dependencies
 import Throttling
 
 extension RateLimiter {
-  public func checkLimit(
-    _ key: Key
-  ) async -> RateLimitResult {
-    @Dependency(\.date) var date
-    let timestamp: Date = date()
+    public func checkLimit(
+        _ key: Key
+    ) async -> RateLimitResult {
+        @Dependency(\.date) var date
+        let timestamp: Date = date()
 
-    return await self.checkLimit(key, timestamp: timestamp)
-  }
+        return await self.checkLimit(key, timestamp: timestamp)
+    }
 }
 
 extension RequestPacer {
-  public func scheduleRequest(
-    _ key: Key
-  ) async -> ScheduleResult {
-    @Dependency(\.date) var date
-    let timestamp: Date = date()
+    public func scheduleRequest(
+        _ key: Key
+    ) async -> ScheduleResult {
+        @Dependency(\.date) var date
+        let timestamp: Date = date()
 
-    return await self.scheduleRequest(key, timestamp: timestamp)
-  }
+        return await self.scheduleRequest(key, timestamp: timestamp)
+    }
 }
 
 extension ThrottledClient {
-  public func acquire(
-    _ key: Key
-  ) async -> AcquisitionResult {
-    @Dependency(\.date) var date
-    let timestamp: Date = date()
+    public func acquire(
+        _ key: Key
+    ) async -> AcquisitionResult {
+        @Dependency(\.date) var date
+        let timestamp: Date = date()
 
-    return await self.acquire(key, timestamp: timestamp)
-  }
+        return await self.acquire(key, timestamp: timestamp)
+    }
 }

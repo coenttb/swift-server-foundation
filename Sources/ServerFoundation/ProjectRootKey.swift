@@ -9,17 +9,17 @@ import Dependencies
 import Foundation
 
 public enum ProjectRootKey: Sendable, TestDependencyKey {
-  public static let testValue: URL = {
-    URL(fileURLWithPath: #filePath)
-      .deletingLastPathComponent()
-      .deletingLastPathComponent()
-      .deletingLastPathComponent()
-  }()
+    public static let testValue: URL = {
+        URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+    }()
 }
 
 extension DependencyValues {
-  public var projectRoot: URL {
-    get { self[ProjectRootKey.self] }
-    set { self[ProjectRootKey.self] = newValue }
-  }
+    public var projectRoot: URL {
+        get { self[ProjectRootKey.self] }
+        set { self[ProjectRootKey.self] = newValue }
+    }
 }
